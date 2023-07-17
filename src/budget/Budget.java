@@ -7,10 +7,22 @@ import java.util.stream.Collectors;
 
 public class Budget {
     private double balance;
+
+
     //private final ArrayList<Purchase> purchases = new ArrayList<>();
     private final HashMap<Integer, ArrayList<Purchase>> purchases = new HashMap<>();
 
     public Budget() {
+    }
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public void insertPurchaseList(int key, ArrayList<Purchase> list) {
+        purchases.put(key, list);
+    }
+    public HashMap<Integer, ArrayList<Purchase>> getPurchases() {
+        return purchases;
     }
 
     public void addIncome(double income) {

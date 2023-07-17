@@ -7,6 +7,7 @@ public class Main {
         // write your code here
         Scanner sc = new Scanner(System.in);
         Budget budget = new Budget();
+        PurchaseListFile purchaseListFile = new PurchaseListFile();
         boolean toContinue = true;
         while (toContinue) {
             System.out.print("""
@@ -15,6 +16,8 @@ public class Main {
                     2) Add purchase
                     3) Show list of purchases
                     4) Balance
+                    5) Save
+                    6) Load
                     0) Exit
                     """);
             String option = sc.nextLine();
@@ -27,6 +30,8 @@ public class Main {
                 case "2" -> addingMenu(sc, budget);
                 case "3" -> displayMenu(sc, budget);
                 case "4" -> System.out.printf("Balance: $%.2f\n\n", budget.getBalance());
+                case "5" -> purchaseListFile.savePurchaseList(budget);
+                case "6" -> purchaseListFile.loadPurchaseList(budget);
                 case "0" -> toContinue = false;
             }
         }

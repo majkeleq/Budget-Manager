@@ -1,5 +1,7 @@
 package budget;
 
+import budget.sorting.PurchaseSorter;
+
 import java.util.Scanner;
 
 public class Main {
@@ -8,6 +10,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Budget budget = new Budget();
         PurchaseListFile purchaseListFile = new PurchaseListFile();
+        PurchaseSorter purchaseSorter = new PurchaseSorter();
         boolean toContinue = true;
         while (toContinue) {
             System.out.print("""
@@ -18,6 +21,7 @@ public class Main {
                     4) Balance
                     5) Save
                     6) Load
+                    7) Analyze (Sort)
                     0) Exit
                     """);
             String option = sc.nextLine();
@@ -32,6 +36,7 @@ public class Main {
                 case "4" -> System.out.printf("Balance: $%.2f\n\n", budget.getBalance());
                 case "5" -> purchaseListFile.savePurchaseList(budget);
                 case "6" -> purchaseListFile.loadPurchaseList(budget);
+                case "7" -> purchaseSorter.run(budget, sc);
                 case "0" -> toContinue = false;
             }
         }

@@ -10,11 +10,10 @@ public class SortByType implements SortingMethod {
     public void sort(HashMap<Integer, ArrayList<Purchase>> purchases) {
         System.out.println("Types");
         double totalSum = 0;
-        for (int i = 1; i <= 4; i++) {
-            double sum = purchases.getOrDefault(i, new ArrayList<>()).stream().mapToDouble(Purchase::getPrice).sum();
-            totalSum += sum;
-            System.out.printf("%s - $%.2f\n", returnType(i), sum);
-        }
+        totalSum += sumCategory(1, purchases);
+        totalSum += sumCategory(3, purchases);
+        totalSum += sumCategory(2, purchases);
+        totalSum += sumCategory(4, purchases);
         System.out.printf("Total sum: $%.2f\n", totalSum);
     }
 
@@ -24,10 +23,10 @@ public class SortByType implements SortingMethod {
                 return "Food";
             }
             case 2 -> {
-                return "Entertainment";
+                return "Clothes";
             }
             case 3 -> {
-                return "Clothes";
+                return "Entertainment";
             }
             case 4 -> {
                 return "Other";
@@ -36,5 +35,11 @@ public class SortByType implements SortingMethod {
                 return null;
             }
         }
+    }
+
+    private double sumCategory(int i, HashMap<Integer, ArrayList<Purchase>> purchases) {
+        double sum = purchases.getOrDefault(i, new ArrayList<>()).stream().mapToDouble(Purchase::getPrice).sum();
+        System.out.printf("%s - $%.2f\n", returnType(i), sum);
+        return sum;
     }
 }
